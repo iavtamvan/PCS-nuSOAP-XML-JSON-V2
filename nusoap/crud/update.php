@@ -8,15 +8,17 @@ $id = $_GET['id']; // id from url
 if( isset($_POST['submit_data']) ){
 
 	// Gets the data from post
-	$katadasar = $_POST['katadasar'];
-	$tipe_katadasar = $_POST['tipe_katadasar'];
+	$kode_obat = $_POST['kode_obat'];
+	$nama_obat = $_POST['nama_obat'];
+	$harga_beli = $_POST['harga_beli'];
+	$harga_jual = $_POST['harga_jual'];
 
 	/**
 	* Calling the "update" method by "__soapCall" from SOAP SERVER 
 	* $client: object of SOAP CLIENT
 	* @params: $id, $name, $email, $address
 	*/
-	if( $client->__soapCall("update", array($id, $katadasar, $tipe_katadasar))  ){
+	if( $client->__soapCall("update", array($id, $kode_obat, $nama_obat, $harga_beli, $harga_jual))  ){
 		$message = "Data is updated successfully.";
 	}else{
 		$message = "Sorry, Data is not updated.";
@@ -48,12 +50,20 @@ $data = $client->__soapCall("getById", array($id));
 			<form action="" method="post">
 			<input type="hidden" name="id" value="<?php echo $id;?>">
 			<tr>
-				<td>katadasar:</td>
-				<td><input name="katadasar" type="text" value="<?php echo $data['katadasar'];?>"></td>
+				<td>Kode Obat:</td>
+				<td><input name="kode_obat" type="text" value="<?php echo $data['kode_obat'];?>"></td>
 			</tr>
 			<tr>
-				<td>tipe katadasar:</td>
-				<td><input name="tipe_katadasar" type="text" value="<?php echo $data['tipe_katadasar'];?>"></td>
+				<td>Nama Obat:</td>
+				<td><input name="nama_obat" type="text" value="<?php echo $data['nama_obat'];?>"></td>
+			</tr>
+			<tr>
+				<td>Harga Beli:</td>
+				<td><input name="harga_beli" type="text" value="<?php echo $data['harga_beli'];?>"></td>
+			</tr>
+			<tr>
+				<td>Harga Jual:</td>
+				<td><input name="harga_jual" type="text" value="<?php echo $data['harga_jual'];?>"></td>
 			</tr>
 			<tr>
 				<td><a href="index.php">Back</a></td>

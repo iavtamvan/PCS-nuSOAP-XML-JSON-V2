@@ -12,6 +12,7 @@ $id = $_GET['id']; // id from url
 */
 if( $client->__soapCall("delete", array($id)) ){
 	$message = "Record is deleted successfully.";
+	
 }else {
 	$message = "Sorry, Record is not deleted.";
 }

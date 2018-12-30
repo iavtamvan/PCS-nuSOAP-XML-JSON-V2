@@ -5,7 +5,7 @@ try {
   $server = new SOAPServer(
     NULL,
     array(
-     'uri' => 'http://localhost/local/xmljson/nusoap/crud/lib/server.php'
+     'uri' => 'http://localhost/local/xmljson-ipah/nusoap/crud/lib/server.php'
     )
   );
 

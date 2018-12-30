@@ -5,7 +5,7 @@ class Db {
 	private $host = "localhost";
 	private $user = "root";
 	private $pass = "";
-	private $db   = "kamus";
+	private $db   = "obat";
 	private $mysqli;
 
 	public function __construct(){
@@ -33,8 +33,8 @@ class Db {
 	* @params $name, $email, $address
 	* @return (int) insert_id
 	*/
-	public function insert($katadasar, $tipekatadasar){
-		$this->mysqli->query("INSERT INTO tb_katadasar (katadasar, tipe_katadasar) VALUES ('$katadasar', '$tipekatadasar')");
+	public function insert($kode_obat, $nama_obat, $harga_beli, $harga_jual){
+		$this->mysqli->query("INSERT INTO is_obat (kode_obat, nama_obat, harga_beli, harga_jual) VALUES ('$kode_obat', '$nama_obat', '$harga_beli', '$harga_jual')");
 		return $this->mysqli->insert_id;
 	}
 
@@ -43,8 +43,8 @@ class Db {
 	* @params $id, $name, $email, $address
 	* @return (boolean) 
 	*/
-	public function update($id, $katadasar, $tipe_katadasar){
-		return $this->mysqli->query("UPDATE tb_katadasar SET katadasar='$katadasar', tipe_katadasar='$tipe_katadasar' WHERE id_katadasar=$id");
+	public function update($id, $nama_obat, $harga_beli, $harga_jual, $kode_obat){
+		return $this->mysqli->query("UPDATE is_obat SET kode_obat='$kode_obat', nama_obat='$nama_obat', harga_beli='$harga_beli', harga_jual='$harga_jual' WHERE id=$id");
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Db {
 	* @return (boolean) 
 	*/
 	public function delete($id){
-		return $this->mysqli->query("DELETE FROM tb_katadasar WHERE id_katadasar=$id");
+		return $this->mysqli->query("DELETE FROM is_obat WHERE id=$id");
 	}
 
 	/**
@@ -62,7 +62,7 @@ class Db {
 	* @return (array) mixed
 	*/
 	public function getAll(){
-		$result = $this->mysqli->query("SELECT * FROM tb_katadasar limit 1000");
+		$result = $this->mysqli->query("SELECT * FROM is_obat");
 		return $result->fetch_all(MYSQLI_ASSOC);
 	}
 
@@ -72,7 +72,7 @@ class Db {
 	* @return (array) mixed
 	*/
 	public function getById($id){
-		return $this->mysqli->query("SELECT * FROM tb_katadasar WHERE id_katadasar=$id")->fetch_assoc();
+		return $this->mysqli->query("SELECT * FROM is_obat WHERE id=$id")->fetch_assoc();
 	}
 }
 

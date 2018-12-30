@@ -13,27 +13,35 @@ if ($_GET) {
     switch ($choose) {
         case 'q':
         $querry = $_GET['q'];
-        $querryTzmpilData = mysqli_query($db, "Select * from tb_katadasar where katadasar = "."'".$querry."';");
+        $querryTampilData = mysqli_query($db, "Select * from is_obat where nama_obat = "."'".$querry."';");
         $arrayJson = array();
-        while ($ambilData = mysqli_fetch_assoc($querryTzmpilData)){
+        while ($ambilData = mysqli_fetch_assoc($querryTampilData)){
         $arrayJson[]= $ambilData;
     }
         echo json_encode($arrayJson);
     break;
     case 'limit':
         $limit = $_GET['limit'];
-        $querryTzmpilData = mysqli_query($db, "Select * from tb_katadasar limit ".$limit);
+        $querryTampilData = mysqli_query($db, "Select * from is_obat limit ".$limit);
         $arrayJson = array();
-        while ($ambilData = mysqli_fetch_assoc($querryTzmpilData)){
+        while ($ambilData = mysqli_fetch_assoc($querryTampilData)){
+        $arrayJson[]= $ambilData;
+        }
+        echo json_encode($arrayJson);
+    break;
+    case 'all':
+        $querryTampilData = mysqli_query($db, "Select * from is_obat limit 30000");
+        $arrayJson = array();
+        while ($ambilData = mysqli_fetch_assoc($querryTampilData)){
         $arrayJson[]= $ambilData;
         }
         echo json_encode($arrayJson);
     break;
         
     default:
-        $querryTzmpilData = mysqli_query($db, "Select * from tb_katadasar limit 30000");
+        $querryTampilData = mysqli_query($db, "Select * from is_obat limit 30000");
         $arrayJson = array();
-        while ($ambilData = mysqli_fetch_assoc($querryTzmpilData)){
+        while ($ambilData = mysqli_fetch_assoc($querryTampilData)){
         $arrayJson[]= $ambilData;
         }
         echo json_encode($arrayJson);
